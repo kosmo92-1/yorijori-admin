@@ -57,6 +57,7 @@ const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
 
 const YoriDashboard = () => {
   const [memberList, setMemberList] = useState([])
+  // const [memberContri, setMemberContri] = useState({})
   // chk_cancel: null 결제 채크 R 표시되면 취소로 옮김
   // import_id: null
   // member_basic_address: "가산동그리"
@@ -73,30 +74,37 @@ const YoriDashboard = () => {
   // per_num: null
   // per_time: null
 
-  const [email, setEmail] = useState('')
-  const [id, setId] = useState('')
-  const [name, setName] = useState('')
-  const [regdate, setRegdate] = useState('')
-  const [amount, setAmount] = useState('')
-  const [paytime, setPaytime] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [id, setId] = useState('')
+  // const [name, setName] = useState('')
+  // const [regdate, setRegdate] = useState('')
+  // const [amount, setAmount] = useState('')
+  // const [paytime, setPaytime] = useState('')
 
   useEffect(() => {
     axios
       .get('/memberDataList.do')
       .then((res) => {
-        console.log(res.data)
-        Object.assign(memberList, ...res.data)
-        setEmail(res.data.member_email)
-        setId(res.data.member_id)
-        setName(res.data.member_name)
-        setRegdate(res.data.member_regdate)
-        setAmount(res.data.pay_amount)
-        setPaytime(res.data.per_time)
+        // console.log(res.data)
+        setMemberList(Object.assign(res.data))
+        // Object.assign(memberList, ...res.data)
+        // setEmail(res.data.member_email)
+        // setId(res.data.member_id)
+        // setName(res.data.member_name)
+        // setRegdate(res.data.member_regdate)
+        // setAmount(res.data.pay_amount)
+        // setPaytime(res.data.per_time)
         console.log('----')
         console.log(memberList)
       })
       .catch((err) => console.log(err.data))
   }, [])
+
+  // const memberContribution = (member_id) => {axios.get('memberContribution.do?member_id='+member_id).then((res) => contribution(res) )}
+
+  // const contribution = (res) => {
+  //   memberContri = res.member_id
+  // }
 
   const tableExample = [
     {
@@ -243,46 +251,50 @@ const YoriDashboard = () => {
                     <CTableHeaderCell className="text-center">
                       <CIcon icon={cilPeople} />
                     </CTableHeaderCell>
-                    <CTableHeaderCell>User</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Country</CTableHeaderCell>
-                    <CTableHeaderCell>Usage</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Payment Method</CTableHeaderCell>
-                    <CTableHeaderCell>Activity</CTableHeaderCell>
+                    <CTableHeaderCell>User ID</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">User Name</CTableHeaderCell>
+                    <CTableHeaderCell>User Contribution</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Payment</CTableHeaderCell>
+                    <CTableHeaderCell>SignUp Date</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {tableExample.map((item, index) => (
+                  {memberList.map((item, index) => (
                     <CTableRow v-for="item in tableItems" key={index}>
                       <CTableDataCell className="text-center">
-                        <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
+                        <CAvatar size="md" src={item.member_photo} />
                       </CTableDataCell>
                       <CTableDataCell>
-                        <div>{item.user.name}</div>
-                        <div className="small text-medium-emphasis">
+                        <div>{item.member_id}</div>
+                        {/* <div className="small text-medium-emphasis">
                           <span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '}
                           {item.user.registered}
-                        </div>
+                        </div> */}
                       </CTableDataCell>
                       <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
+                        <div>{item.member_name}</div>
+                        {/* <CIcon size="xl" icon={item.country.flag} title={item.country.name} /> */}
                       </CTableDataCell>
                       <CTableDataCell>
                         <div className="clearfix">
                           <div className="float-start">
-                            <strong>{item.usage.value}%</strong>
+                            {/* <strong>{item.detail_address}%</strong> */}
                           </div>
                           <div className="float-end">
-                            <small className="text-medium-emphasis">{item.usage.period}</small>
+                            <small className="text-medium-emphasis">100</small>
                           </div>
                         </div>
-                        <CProgress thin color={item.usage.color} value={item.usage.value} />
+                        {/* <CProgress thin color="danger" value='`20`' /> */}
+                        {/* <CProgress thin color="danger" value="60" /> */}
                       </CTableDataCell>
                       <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.payment.icon} />
+                        <div>{item.chkCancel}</div>
+                        {/* <CIcon size="xl" icon={item.payment.icon} /> */}
                       </CTableDataCell>
                       <CTableDataCell>
-                        <div className="small text-medium-emphasis">Last login</div>
-                        <strong>{item.activity}</strong>
+                        {/* <div className="small text-medium-emphasis">Last login</div> */}
+                        {/* <strong>{item.activity}</strong> */}
+                        <div>{new Date(item.member_regdate).toLocaleDateString()}</div>
                       </CTableDataCell>
                     </CTableRow>
                   ))}
