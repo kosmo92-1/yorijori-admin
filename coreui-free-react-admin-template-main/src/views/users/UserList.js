@@ -15,17 +15,17 @@ import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle, Table } from
 const UserList = () => {
   const [list, setList] = useState([
     {
-      member_basic_address: '가산동그리',
-      member_detail_address: '포도마을',
-      member_email: 'skehskeh002@gmail.com',
-      member_id: 'admin3',
-      member_idKey: null,
-      member_name: '예명',
-      member_photo: 'yorijori.jpg',
-      member_pw: '12345',
-      member_regdate: 1638429280000,
-      member_tel: '01055556666',
-      member_type: '1',
+      member_basic_address: '',
+      member_detail_address: '',
+      member_email: '',
+      member_id: '',
+      member_idKey: 0,
+      member_name: '',
+      member_photo: '',
+      member_pw: '',
+      member_regdate: 0,
+      member_tel: '',
+      member_type: '',
     },
   ])
 
@@ -36,7 +36,7 @@ const UserList = () => {
     <tr key={item.member_id}>
       <th scope="row">{item.member_id}</th>
       <td>{item.member_name}</td>
-      <td>{item.member_regdate}</td>
+      <td>{new Date(item.member_regdate).toLocaleDateString()}</td>
     </tr>
   ))
 
@@ -88,7 +88,7 @@ const UserList = () => {
                 <option value="name">이름</option>
               </CFormSelect>
               <CFormInput
-                placeholder="검색할 아이디를 입력해주세요"
+                placeholder="검색할 단어를 입력해주세요"
                 aria-label="Recipient&#39;s username"
                 aria-describedby="basic-addon2"
                 onChange={handleInput}
@@ -102,7 +102,7 @@ const UserList = () => {
               <thead>
                 <tr>
                   <th>회원아이디</th>
-                  <th>채널이름</th>
+                  <th>회원이름</th>
                   <th>등록날짜</th>
                 </tr>
               </thead>
