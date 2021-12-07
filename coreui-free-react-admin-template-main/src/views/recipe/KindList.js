@@ -10,7 +10,7 @@ const KindList = () => {
   // 페이지가 로드되면 처음에 재료종류에 관한 종류리스트를 가져온다.
   useEffect(() => {
     //해당 종류의 리스트를불러온다.
-    axios.get(`/getSelectedKindList.do?name=${kind}`).then((res) => {
+    axios.get('/getKindList.do?kind_id=' + kind).then((res) => {
       console.log(res.data)
       setKindMap(res.data)
     })

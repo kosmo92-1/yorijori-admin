@@ -76,7 +76,7 @@ const IngredientList = () => {
       })
   }
   useEffect(() => {
-    axios.get('/getSelectedKindList.do?name=ingredient').then((res) => {
+    axios.get('/getKindList.do?kind_id=ing').then((res) => {
       setIngMap(res.data)
     })
   }, [ingKind])

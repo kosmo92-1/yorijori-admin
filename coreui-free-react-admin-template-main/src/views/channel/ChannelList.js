@@ -7,6 +7,7 @@ const ChannelList = () => {
   const [channelList, setChannelList] = useState([
     {
       channel_id: '',
+      channel_name: '',
       member_id: '',
       channel_content: '',
       channel_photo: null,
@@ -18,7 +19,7 @@ const ChannelList = () => {
       <th scope="row">{item.channel_name}</th>
       <td>{item.channel_content}</td>
       <td>{item.member_id}</td>
-      <td>@{item.channel_regdate}</td>
+      <td>{new Date(item.channel_regdate).toLocaleDateString()}</td>
       <td>
         <NoticeDelete channel_id={item.channel_id} />
       </td>

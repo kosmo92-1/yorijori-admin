@@ -38,7 +38,7 @@ const NoticeDetail = () => {
       // post 보내고 나서 실행
       .then((res) => {
         alert('성공')
-        window.location.href = 'http://localhost:3000/#/notice'
+        window.location.href = 'http://localhost:3001/#/notice'
       })
       .catch((err) => {
         alert('실패')

@@ -4,7 +4,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Badge, Button, PopoverBody, PopoverHeader, UncontrolledPopover } from 'reactstrap'
 const SelectedIngList = (props) => {
-
+console.log(props)
 const [badge, setBadge] = useState([{ ing_id: '', ing_name: '' }])
 useEffect(()=>{
     // axios.get(`/listIngredient.do?searchType=kind&keyword=ingredient_1`)
@@ -14,7 +14,7 @@ useEffect(()=>{
         console.log(res.data.list)
         console.log(badge)
     })
-    },[ props.ingKind])
+    },[props.ingKind])
   return (
       badge.map((item) => (
         <>
