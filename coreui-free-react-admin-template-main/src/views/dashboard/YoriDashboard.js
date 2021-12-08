@@ -51,6 +51,7 @@ import avatar4 from 'src/assets/images/avatars/4.jpg'
 import avatar5 from 'src/assets/images/avatars/5.jpg'
 import avatar6 from 'src/assets/images/avatars/6.jpg'
 import axios from 'axios'
+import Contribution from './Contribution.js'
 
 const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
 const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
@@ -95,10 +96,14 @@ const YoriDashboard = () => {
         // setAmount(res.data.pay_amount)
         // setPaytime(res.data.per_time)
         console.log('----')
-        console.log(memberList)
+        // console.log(memberList)
       })
       .catch((err) => console.log(err.data))
   }, [])
+
+  // const chkCancel = (chkCancel) => {
+  //   chkCancel = null ? 'No' : chkCancel
+  // }
 
   // const memberContribution = (member_id) => {axios.get('memberContribution.do?member_id='+member_id).then((res) => contribution(res) )}
 
@@ -188,7 +193,7 @@ const YoriDashboard = () => {
       },
       country: { name: 'Poland', flag: cifPl },
       usage: {
-        value: 43,
+        value: 10,
         period: 'Jun 11, 2021 - Jul 10, 2021',
         color: 'success',
       },
@@ -277,18 +282,20 @@ const YoriDashboard = () => {
                       </CTableDataCell>
                       <CTableDataCell>
                         <div className="clearfix">
-                          <div className="float-start">
-                            {/* <strong>{item.detail_address}%</strong> */}
-                          </div>
+                          {/* <div className="float-start">
+                            <strong>{item.detail_address}%</strong>
+                          </div> */}
                           <div className="float-end">
-                            <small className="text-medium-emphasis">100</small>
+                            {/* <small className="text-medium-emphasis"> */}
+                            <Contribution member_id={item.member_id} />%{/* </small> */}
                           </div>
                         </div>
+                        {/* <CProgress thin color="danger" value={20} /> */}
                         {/* <CProgress thin color="danger" value='`20`' /> */}
                         {/* <CProgress thin color="danger" value="60" /> */}
                       </CTableDataCell>
                       <CTableDataCell className="text-center">
-                        <div>{item.chkCancel}</div>
+                        <div>{item.chk_cancel === null ? 'yet' : item.chk_cancel}</div>
                         {/* <CIcon size="xl" icon={item.payment.icon} /> */}
                       </CTableDataCell>
                       <CTableDataCell>
