@@ -68,7 +68,7 @@ const ChannelList = React.lazy(() => import('./views/channel/ChannelList'))
 const YoriDashboard = React.lazy(() => import('./views/dashboard/YoriDashboard'))
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: 'Home', component: Dashboard },
   { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },

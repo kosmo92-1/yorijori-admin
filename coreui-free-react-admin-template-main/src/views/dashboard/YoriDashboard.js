@@ -207,9 +207,9 @@ const YoriDashboard = () => {
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
-            <CCardHeader>Traffic {' & '} Sales</CCardHeader>
+            <CCardHeader>Info</CCardHeader>
             <CCardBody>
-              <CRow>
+              {/* <CRow>
                 <CCol xs={12} md={6} xl={6}>
                   <CRow>
                     <CCol sm={6}>
@@ -246,7 +246,7 @@ const YoriDashboard = () => {
                   <hr className="mt-0" />
                   <div className="mb-5"></div>
                 </CCol>
-              </CRow>
+              </CRow> */}
 
               <br />
 
@@ -258,7 +258,7 @@ const YoriDashboard = () => {
                     </CTableHeaderCell>
                     <CTableHeaderCell>User ID</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">User Name</CTableHeaderCell>
-                    <CTableHeaderCell>User Contribution</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">User Contribution</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">Payment</CTableHeaderCell>
                     <CTableHeaderCell>SignUp Date</CTableHeaderCell>
                   </CTableRow>
@@ -285,12 +285,12 @@ const YoriDashboard = () => {
                           {/* <div className="float-start">
                             <strong>{item.detail_address}%</strong>
                           </div> */}
-                          <div className="float-end">
+                          <div id="contribution" className="text-center">
                             {/* <small className="text-medium-emphasis"> */}
                             <Contribution member_id={item.member_id} />%{/* </small> */}
                           </div>
                         </div>
-                        {/* <CProgress thin color="danger" value={20} /> */}
+                        {/* <CProgress thin color="danger" value={} /> */}
                         {/* <CProgress thin color="danger" value='`20`' /> */}
                         {/* <CProgress thin color="danger" value="60" /> */}
                       </CTableDataCell>
